@@ -14,20 +14,15 @@
     }
 
     function handleSelect(event) {
-        if (event.detail.selected) {
-            // deselect others
-            entries.forEach(e => {
-                e.selected = e.id == event.detail.id;
-            });
-            entries = [...entries];
+        // update selections
+        entries.forEach(e => {
+            e.selected = e.id == event.detail.id && event.detail.selected;
+        });
+        entries = [...entries];
 
-            // TODO update db
-            console.log("new selected meme: " + event.detail.id)
-        }
-        else {
-            // TODO update db
-            console.log("deselected meme.");
-        }
+        // TODO update db
+        console.log("selection updated");
+        
     }
 
 </script>
@@ -78,7 +73,7 @@
     
 </style>
 
-<button class={buttonClass} on:click={toggle}>#{name}</button>
+<button class={buttonClass} on:click={toggle}>{name}</button>
 <div id="gallery" class={buttonClass} transition:slide>
     {#each entries as entry}
         <Entry {...entry} on:select={handleSelect}/>

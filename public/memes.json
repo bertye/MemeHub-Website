@@ -1,0 +1,59 @@
+{
+    "categories": [
+        {
+            "name": "#Dank",
+            "nominees": [
+                {
+                    "id": "memeA",
+                    "image": "/img/memes/memeA.jpg",
+                    "user": "mainy"
+                },
+                {
+                    "id": "memeB",
+                    "image": "/img/memes/memeB.jpg",
+                    "user": "leif"
+                },
+                { 
+                    "id": "memeC",
+                    "image": "/img/memes/memeC.mp4",
+                    "user": "stift"
+                }
+            ]
+        },
+        {
+            "name": "#Gesellschaft",
+            "nominees": [
+                {
+                    "id": "memeA",
+                    "image": "/img/memes/memeA.jpg",
+                    "user": "mainy"
+                }
+            ]
+        },
+        {
+            "name": "Keine Kategorie",
+            "nominees": [
+                {
+                    "id": "memeD",
+                    "image": "/img/memes/memeD.jpg",
+                    "user": "PietistPiet"
+                },
+                {
+                    "id": "memeA",
+                    "image": "/img/memes/memeA.jpg",
+                    "user": "mainy"
+                },
+                {
+                    "id": "memeB",
+                    "image": "/img/memes/memeB.jpg",
+                    "user": "leif"
+                },
+                { 
+                    "id": "memeC",
+                    "image": "/img/memes/memeC.mp4",
+                    "user": "stift"
+                }
+            ]
+        }
+    ]
+}

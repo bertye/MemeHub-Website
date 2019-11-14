@@ -1,39 +1,21 @@
-<link href="https://fonts.googleapis.com/css?family=Hind|Teko:300&display=swap" rel="stylesheet">
-
-<link rel="prefetch" href="/img/memes/memeA.jpg" />
-<link rel="prefetch" href="/img/memes/memeB.jpg" />
-
 <script>
 
 	import Banner from "./components/Banner.svelte";
 	import Category from "./components/Category.svelte";
 	import BottomSpacer from "./components/BottomSpacer.svelte";
+	import VoteCount from "./components/VoteCount.svelte";
+
+	let dataReq = fetch("/memes.json")
+		.then(response => response.json());
+
 
 	const urlParams = new URLSearchParams(window.location.search);
 	const token = urlParams.get('token');
 
 	var showBanner = true;
-	var categories = ['Dank', 'Gesellschaft', 'Spooktober'];
-	var dummy_entries = [
-		{
-			id: '1',
-			user: "mainy",
-			image: "/img/memes/memeA.jpg",
-			selected: false,
-		},
-		{
-			id: '2',
-			user: "mainy",
-			image: "/img/memes/memeB.jpg",
-			selected: true,
-		},
-		{
-			id: '3',
-			user: "mainy",
-			image: "/img/memes/memeA.jpg",
-			selected: false,
-		}
-	];
+	var missingVotes = 2;
+	let loading = true;
+
 </script>
 
 <style>
@@ -51,7 +33,12 @@
 </style>
 
 <Banner />
-{#each categories as category}
-	<Category name={category} entries={dummy_entries} />
-{/each}
+{#await dataReq}
+	<p>Loading data...</p>
+{:then data}
+	{#each data.categories as category}
+		<Category name={category.name} entries={category.nominees} />
+	{/each}
+{/await}
 <BottomSpacer {token}/>
+<VoteCount {missingVotes} {loading}/>
