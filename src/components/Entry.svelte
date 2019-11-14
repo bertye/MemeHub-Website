@@ -2,11 +2,13 @@
     import { createEventDispatcher } from 'svelte';
 
     export let id;
-    export let image;
+    export let file;
     export let user;
     export let selected;
 
-    
+    $: fileType = file.split('.')[1];
+
+
     const dispatch = createEventDispatcher();
     
     $: activeClass = selected ? "active" : "";
@@ -43,7 +45,7 @@
         margin-right: 5em;
     }
     
-    img {
+    img, video {
         display: block;
         height: 85%;
         margin: 0 auto;
@@ -59,6 +61,10 @@
 </style>
 
 <div class="{activeClass}" on:click={toggle}>
-    <img src={image} alt="Meme by @{user}">
+    {#if fileType == "jpg"}
+        <img src={file} alt="Meme by @{user}">
+    {:else if fileType == "mp4"}
+        <video src={file} autoplay muted loop />
+    {/if}
     <p>@{user}</p>
 </div>

@@ -5,17 +5,17 @@
             "nominees": [
                 {
                     "id": "memeA",
-                    "image": "/img/memes/memeA.jpg",
+                    "file": "/img/memes/memeA.jpg",
                     "user": "mainy"
                 },
                 {
                     "id": "memeB",
-                    "image": "/img/memes/memeB.jpg",
+                    "file": "/img/memes/memeB.jpg",
                     "user": "leif"
                 },
                 { 
                     "id": "memeC",
-                    "image": "/img/memes/memeC.mp4",
+                    "file": "/img/memes/memeC.mp4",
                     "user": "stift"
                 }
             ]
@@ -25,7 +25,7 @@
             "nominees": [
                 {
                     "id": "memeA",
-                    "image": "/img/memes/memeA.jpg",
+                    "file": "/img/memes/memeA.jpg",
                     "user": "mainy"
                 }
             ]
@@ -35,22 +35,22 @@
             "nominees": [
                 {
                     "id": "memeD",
-                    "image": "/img/memes/memeD.jpg",
+                    "file": "/img/memes/memeD.jpg",
                     "user": "PietistPiet"
                 },
                 {
                     "id": "memeA",
-                    "image": "/img/memes/memeA.jpg",
+                    "file": "/img/memes/memeA.jpg",
                     "user": "mainy"
                 },
                 {
                     "id": "memeB",
-                    "image": "/img/memes/memeB.jpg",
+                    "file": "/img/memes/memeB.jpg",
                     "user": "leif"
                 },
                 { 
                     "id": "memeC",
-                    "image": "/img/memes/memeC.mp4",
+                    "file": "/img/memes/memeC.mp4",
                     "user": "stift"
                 }
             ]
