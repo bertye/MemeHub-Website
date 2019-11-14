@@ -1,0 +1,35 @@
+<script>
+    export let token;
+</script>
+
+<style>
+    div {
+        color: var(--color-primary);
+        background-color: var(--color-secondary);
+
+        margin: 5em 0 0;
+        padding: 2em;
+        font-size: 1.2em;
+        min-height: 50%;
+        text-align: center;
+    }
+    hr {
+        border: 1px solid var(--color-primary);
+    }
+</style>
+
+<div>
+    <h2>How it works</h2>
+    <p>
+        You can choose to vote for one meme from each category. The ones receiving the most votes will be the winner of this years MemeHub Awards.
+    </p>
+    <h2>Which memes have been nominated?</h2>
+    <p>
+        We selected the top 5 memes from each category. Furthermore we looked through the top uncategorized memes.
+    </p>
+    <hr>
+    <p>
+        Voting Token: {token}
+    </p>
+    
+</div>
