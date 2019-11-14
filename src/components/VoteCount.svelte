@@ -1,6 +1,13 @@
 <script>
-    export let missingVotes;
-    export let loading;
+    import { nominees } from '../nominees.js';
+    import { votes } from '../votes.js';
+    import { loading } from '../loading.js';
+    import { fade } from 'svelte/transition';
+
+    $: isLoading = $loading > 0;
+    $: categoryCount = Object.keys($nominees).length;
+    $: voteCount = Object.keys($votes).length;
+    $: missing = categoryCount - voteCount;
 
 </script>
 
@@ -65,16 +72,20 @@
 </style>
 
 <div id="container">
-    {#if missingVotes > 0}
+    {#if missing > 1}
         <p>
-            {missingVotes} votes to cast!
+            {missing} votes to cast!
+        </p>
+    {:else if missing == 1}
+        <p>
+            1 vote to cast!
         </p>
     {:else}
         <p>
             You are all done!
         </p>
     {/if}
-    {#if loading}
+    {#if isLoading}
         <div id="spinner"></div>
     {/if}
 </div>

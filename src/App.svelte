@@ -4,17 +4,9 @@
 	import Category from "./components/Category.svelte";
 	import BottomSpacer from "./components/BottomSpacer.svelte";
 	import VoteCount from "./components/VoteCount.svelte";
+	import { nominees } from "./nominees.js";
 
-	let dataReq = fetch("/memes.json")
-		.then(response => response.json());
-
-
-	const urlParams = new URLSearchParams(window.location.search);
-	const token = urlParams.get('token');
-
-	var showBanner = true;
-	var missingVotes = 2;
-	let loading = true;
+	$: categories = Object.keys($nominees);
 
 </script>
 
@@ -33,12 +25,8 @@
 </style>
 
 <Banner />
-{#await dataReq}
-	<p>Loading data...</p>
-{:then data}
-	{#each data.categories as category}
-		<Category name={category.name} entries={category.nominees} />
-	{/each}
-{/await}
-<BottomSpacer {token}/>
-<VoteCount {missingVotes} {loading}/>
+{#each categories as category}
+	<Category {category}/>
+{/each}
+<BottomSpacer/>
+<VoteCount/>

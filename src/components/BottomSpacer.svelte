@@ -1,5 +1,5 @@
 <script>
-    export let token;
+    import { token } from '../token.js';
 </script>
 
 <style>
@@ -8,7 +8,7 @@
         background-color: var(--color-secondary);
 
         margin: 5em 0 0;
-        padding: 2em;
+        padding: 2em 2em 7em;
         font-size: 1.2em;
         min-height: 50%;
         text-align: center;

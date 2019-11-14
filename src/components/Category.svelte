@@ -1,30 +1,16 @@
 <script>
-    import slide from 'svelte-transitions-slide';
     import Entry from "./Entry.svelte";
-
-    export let name;
-    export let entries;
-    export let expanded = false;
+    import { nominees } from "../nominees.js";
+    export let category;
     
-    let current = 0;
+    $: entries = $nominees[category];
+    
+    let expanded = false;
     $:buttonClass = expanded ? "active" : "";
     
     function toggle() {
         expanded = !expanded;
     }
-
-    function handleSelect(event) {
-        // update selections
-        entries.forEach(e => {
-            e.selected = e.id == event.detail.id && event.detail.selected;
-        });
-        entries = [...entries];
-
-        // TODO update db
-        console.log("selection updated");
-        
-    }
-
 </script>
 
 <style>
@@ -73,9 +59,9 @@
     
 </style>
 
-<button class={buttonClass} on:click={toggle}>{name}</button>
-<div id="gallery" class={buttonClass} transition:slide>
+<button class={buttonClass} on:click={toggle}>{category}</button>
+<div id="gallery" class={buttonClass}>
     {#each entries as entry}
-        <Entry {...entry} on:select={handleSelect}/>
+        <Entry {entry} {category}/>
     {/each}
 </div>

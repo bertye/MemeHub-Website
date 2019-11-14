@@ -7,7 +7,7 @@
         background-color: var(--color-secondary);
         color: var(--color-primary);
         text-align: right;
-        font-family: 'Teko', serif;
+        font-family: 'Teko', sans-serif;
         font-size: 8em;
         font-stretch: narrower;
         font-weight: 300;
