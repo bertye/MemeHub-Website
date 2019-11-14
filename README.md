@@ -1,27 +1,19 @@
-*Psst — looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+# MemeHub Website
 
----
+This project contains the Webstie for our MemeHub bot. See https://github.com/mainy1995/MemeHub-Bot.
 
-# svelte app
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
+## Requirements
 
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
-```
-
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
-
+You will need node and npm to run this.
 
 ## Get started
 
-Install the dependencies...
+Install:
+
+
 
 ```bash
-cd svelte-app
 npm install
 ```
 
