@@ -10,7 +10,7 @@ fetch('http://localhost:3040/user?token=' + token)
             console.log("ERROR couod not get user.");
             console.log(response.statusText);
             return { 
-                user: "Invalid",
+                name: "Invalid",
                 invalidToken: true
             };
         }
