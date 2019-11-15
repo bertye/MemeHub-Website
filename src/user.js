@@ -11,10 +11,14 @@ fetch('http://localhost:3040/user?token=' + token)
             console.log(response.statusText);
             return { 
                 user: "Invalid",
-                error: true
+                invalidToken: true
             };
         }
         return response.json();
+    }, err => {
+        console.log("ERROR cannot reach webserver.");
+        console.log(err);
+        user.set({ name: "Unknown", noConnection: true });
     })
     .then(user.set)
     .finally(() => { loading.update(n => n - 1); });

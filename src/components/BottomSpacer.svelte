@@ -31,8 +31,6 @@
     <p>
         {#if $user.loading}
             Loading userdata...
-        {:else if $user.error}
-            Invalid token
         {:else}
             User: {$user.name}
         {/if}

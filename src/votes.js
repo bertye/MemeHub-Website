@@ -13,6 +13,9 @@ fetch('http://localhost:3040/votes?token=' + token)
             return {};
         }
         return response.json()
+    }, err => {
+        console.log("ERROR cannot reach webserver.");
+        console.log(err);
     })
     .then(votes.set)
     .then(() => {
@@ -28,6 +31,9 @@ function sendVotes(votes) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(votes)
+        }, err => {
+            console.log("ERROR cannot reach webserver.");
+            console.log(err);
         })
         .then(response => { 
             if (!response.ok) {

@@ -6,32 +6,11 @@
 	import { nominees } from "./nominees.js";
 	import { user } from './user.js';
 
-	const infoLoading = "Loading...";
-	const infoVote = "Vote for your favorite Memes!";
-	const infoError = "Invalid token!";
-
 	$: categories = Object.keys($nominees);
-	let text = infoLoading;
-	let loading = true;
-	let error = false;
-	const userUnsub = user.subscribe(newUser => {
-		if (newUser.loading) {
-			loading = true;
-			error = false;
-			text = infoLoading;
-			return;
-		}
-
-		loading = false;
-		if (newUser.error) {
-			error = true;
-			text = infoError;
-			return;
-		}
-
-		error = false;
-		text = infoVote;
-	})
+	$: text = ($user.loading) ? "Loading..." 
+			: ($user.invalidToken) ? "Invalid token!"
+			: ($user.noConnection) ? "No connection"
+			: "Vote for your favorite Memes!";
 
 </script>
 
@@ -78,18 +57,59 @@
 		border: 0.3em solid var(--color-secondary);
 		margin: 0 0 0 1em;
 	}
+	#spinner {
+        display: block;
+		margin: 3em auto 0;
+        height: 4em;
+        width: 4em;    
+        border: .4em transparent solid;
+        border-top: .4em solid var(--color-secondary);
+        border-radius: 50%;
+        -webkit-animation: spin2 1s infinite linear;
+                animation: spin2 1s infinite linear;
+    }
+
+    @-webkit-keyframes spin2 {
+        from {
+            -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+        }
+        to {
+            -webkit-transform: rotate(359deg);
+                    transform: rotate(359deg);
+        }
+    }
+
+    @keyframes spin2 {
+        from {
+            -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+            -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+        }
+        to {
+            -webkit-transform: rotate(359deg);
+                    transform: rotate(359deg);
+            -webkit-transform: rotate(359deg);
+                    transform: rotate(359deg);
+        }
+    }
 </style>
 
 <Banner {text}/>
 
-{#if error} 
+{#if $user.loading}
+	<div id="spinner"></div>
+{:else if $user.invalidToken} 
 	<p>You need a valid token in order to vote. Please check your messages from <a href="https://t.me/ToMemeHub_Bot">@ToMemeHub_Bot</a></p>
 	<p>You can also enter your token here:</p>
 	<form action="/" method="GET">
 		<input type="text" name="token"/>
 		<input type="submit" value="Use"/>
 	</form>
-{:else if !loading}
+{:else if $user.noConnection}
+	<p>We are currently experiencing technical difficulties. Plase try again later.</p>
+{:else}
 	{#each categories as category}
 		<Category {category}/>
 	{/each}
