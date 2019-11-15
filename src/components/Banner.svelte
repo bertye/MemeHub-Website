@@ -1,5 +1,7 @@
 <script>
-	import InfoText from "./InfoText.svelte";
+    import InfoText from "./InfoText.svelte";
+    
+    export let text;
 </script>
 
 <style>
@@ -26,4 +28,4 @@
     Awards
     2019
 </h1>
-<InfoText/>
+<InfoText {text}/>

@@ -6,20 +6,19 @@ let votes_value = {};
 export const votes = writable(votes_value);
 
 fetch('http://localhost:3040/votes?token=' + token)
-    .then(
-        response => response.json(),
-        err => {
+    .then(response => {
+        if (!response.ok) {
             console.log("ERROR couod not get votes.");
-            console.log(err);
+            console.log(response.statusText);
             return {};
-        })
-    .then(json => {
-        votes.set(json);
-        loading.update(n => n - 1);
+        }
+        return response.json()
     })
+    .then(votes.set)
     .then(() => {
         votes.subscribe(sendVotes);
-    });
+    })
+    .finally(() => { loading.update(n => n - 1); });
 
 function sendVotes(votes) {
     loading.update(n => n + 1);
@@ -30,13 +29,13 @@ function sendVotes(votes) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(votes)
         })
-        .then(
-            () => {  },
-            err => {
+        .then(response => { 
+            if (!response.ok) {
                 console.log("ERROR could not push votes.");
-                console.log(err);
-            })
-        .then(() => { loading.update(n => n - 1); });
+                console.log(response.statusText);
+            }
+        })
+        .finally(() => { loading.update(n => n - 1); });
 }
 
 loading.update(n => n + 1);

@@ -1,3 +1,7 @@
+<script>
+    export let text;
+</script>
+
 <style>
     p {
         background-color: var(--color-primary-variant);
@@ -10,5 +14,5 @@
 </style>
 
 <p id="info-text">
-	Vote for your favorite Memes!
+	{text}
 </p>

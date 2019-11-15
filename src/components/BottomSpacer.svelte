@@ -1,5 +1,5 @@
 <script>
-    import { token } from '../token.js';
+    import { user } from '../user.js';
 </script>
 
 <style>
@@ -7,7 +7,7 @@
         color: var(--color-primary);
         background-color: var(--color-secondary);
 
-        margin: 5em 0 0;
+        margin: 3em 0 0;
         padding: 2em 2em 7em;
         font-size: 1.2em;
         min-height: 50%;
@@ -29,7 +29,13 @@
     </p>
     <hr>
     <p>
-        Voting Token: {token}
+        {#if $user.loading}
+            Loading userdata...
+        {:else if $user.error}
+            Invalid token
+        {:else}
+            User: {$user.name}
+        {/if}
     </p>
     
 </div>
