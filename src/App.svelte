@@ -39,6 +39,8 @@
 		color: var(--color-secondary-variant);
 	}
 	form {
+		margin: 0 auto;
+		max-width: 50em;
 		padding:  1em 2em;
 		display: flex;
 		align-content: stretch;
@@ -51,7 +53,6 @@
 		border: 0.3em solid var(--color-secondary);
 	}
 	input[type="submit"] {
-
 		color: var(--color-primary);
 		background-color: var(--color-secondary);
 		border: 0.3em solid var(--color-secondary);
