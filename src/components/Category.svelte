@@ -38,10 +38,10 @@
     #gallery {
         display: block;
         overflow-x: scroll;
+        overflow-y: hidden;
         white-space: nowrap;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
         min-width: 100%;
         background-color: var(--color-primary);
         text-align: center;
@@ -54,6 +54,7 @@
 
     #gallery.active {
         height: 30em;
+        padding: 0 0 1em;
     }
 
     
