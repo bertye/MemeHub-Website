@@ -1,12 +1,14 @@
 <script>
     import { createEventDispatcher } from 'svelte';
     import { votes } from '../votes.js';
+    import { media } from '../media.js';
 
     export let entry;
     export let category;
 
-    $: selected = $votes[category] && $votes[category] == entry.id;
-    $: fileType = entry.file.split('.')[1];
+    $: file = $media[entry];
+    $: selected = $votes[category] && $votes[category] == entry;
+    $: fileType = file[entry].split('.')[1];
     $: activeClass = selected ? "active" : "";
 
     function toggle() {
@@ -15,7 +17,7 @@
             votes.update(v => v); // delete not working properly
         }
         else {
-            $votes[category] = entry.id;
+            $votes[category] = entry;
         }
     }
 
@@ -53,21 +55,12 @@
         height: 85%;
         margin: 0 auto;
     }
-    p {
-        display: block;
-        margin: 0;
-        padding: 1em 2.3em;
-        text-transform: uppercase;
-        text-align: center;
-        font-size: 1.2em;
-    }
 </style>
 
 <div class="{activeClass}" on:click={toggle}>
-    {#if fileType == "jpg"}
-        <img src={entry.file} alt="Meme by @{entry.user}">
+    {#if fileType == "jpg" || fileType == "png" || fileType == "gif"}
+        <img src={file} alt="Meme {entry}">
     {:else if fileType == "mp4"}
-        <video src={entry.file} autoplay muted loop />
+        <video src={file} autoplay muted loop />
     {/if}
-    <p>@{entry.user}</p>
 </div>

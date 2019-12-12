@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
 public/bundle.*
-public/img
+public/media
 public/nominees.json
+public/media.json
