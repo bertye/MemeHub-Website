@@ -4,7 +4,7 @@ import { token } from './token.js';
 
 export const user = writable({ loading: true, name: "" });
 
-fetch('http://localhost:2355/user?token=' + token)
+fetch('http://memehub.ddns.net:2355/user?token=' + token)
     .then(response => {
         if (!response.ok) {
             console.log("ERROR couod not get user.");
