@@ -24,8 +24,9 @@
     "svelte-transitions-slide": "^1.0.0"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "docker build . -t leifb/memehub-website",
     "dev": "rollup -c -w",
+    "prod": "rollup -c && sirv public --single --host 0.0.0.0 --port 80",
     "start": "sirv public --single --host 0.0.0.0 --port 80",
     "start:dev": "sirv public --single --dev"
   }
