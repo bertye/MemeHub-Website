@@ -1,5 +1,5 @@
 <script>
-    import { user } from '../user.js';
+    import { user } from "../user.js";
 </script>
 
 <style>
@@ -21,19 +21,17 @@
 <div>
     <h2>How it works</h2>
     <p>
-        You can choose to vote for one meme from each category. The ones receiving the most votes will be the winner of this years MemeHub Awards.
+        You can choose to vote for one meme from each category. The ones
+        receiving the most votes will be the winner of this years MemeHub
+        Awards.
     </p>
     <h2>Which memes have been nominated?</h2>
     <p>
-        We selected the top 5 memes from each category. Furthermore we looked through the top uncategorized memes.
+        This year we have looked at about 1000 of your best memes and put them
+        into categories.
     </p>
-    <hr>
+    <hr />
     <p>
-        {#if $user.loading}
-            Loading userdata...
-        {:else}
-            User: {$user.name}
-        {/if}
+        {#if $user.loading}Loading userdata...{:else}User: {$user.name}{/if}
     </p>
-    
 </div>

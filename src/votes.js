@@ -5,7 +5,7 @@ import { token } from './token.js';
 let votes_value = {};
 export const votes = writable(votes_value);
 
-fetch('http://memehub.ddns.net:2355/votes?token=' + token)
+fetch('__env.API_URL/votes?token=' + token)
     .then(response => {
         if (!response.ok) {
             console.log("ERROR couod not get votes.");
@@ -26,7 +26,7 @@ fetch('http://memehub.ddns.net:2355/votes?token=' + token)
 function sendVotes(votes) {
     loading.update(n => n + 1);
 
-    fetch('http://memehub.ddns.net:2355/votes?token=' + token,
+    fetch('__env.API_URL/votes?token=' + token,
         {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -35,7 +35,7 @@ function sendVotes(votes) {
             console.log("ERROR cannot reach webserver.");
             console.log(err);
         })
-        .then(response => { 
+        .then(response => {
             if (!response.ok) {
                 console.log("ERROR could not push votes.");
                 console.log(response.statusText);

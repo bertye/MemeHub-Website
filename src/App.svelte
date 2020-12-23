@@ -4,35 +4,37 @@
 	import BottomSpacer from "./components/BottomSpacer.svelte";
 	import VoteCount from "./components/VoteCount.svelte";
 	import { nominees } from "./nominees.js";
-	import { user } from './user.js';
+	import { user } from "./user.js";
 
 	$: categories = Object.keys($nominees);
-	$: text = ($user.loading) ? "Loading..." 
-			: ($user.invalidToken) ? "Invalid token!"
-			: ($user.noConnection) ? "No connection"
-			: "Vote for your favorite Memes!";
-
+	$: text = $user.loading
+		? "Loading..."
+		: $user.invalidToken
+		? "Invalid token!"
+		: $user.noConnection
+		? "No connection"
+		: "Vote for your favorite Memes!";
 </script>
 
 <style>
 	:global(:root) {
-		--color-primary: rgb(204, 143, 0);
-		--color-primary-variant: rgb(167, 117, 0);
-		--color-secondary: rgb(0, 0, 0);
-		--color-secondary-variant: rgb(87, 87, 87);
+		--color-primary: #f05454;
+		--color-primary-variant: #cf4545;
+		--color-secondary: #000000;
+		--color-secondary-variant: #242d36;
 	}
 	:global(body) {
 		background-color: var(--color-primary);
 		padding: 0;
-		font-family: 'Hind', sans-serif;
+		font-family: "Hind", sans-serif;
 	}
 	p {
 		color: var(--color-secondary);
 
-        margin: 0;
-        padding: 1em 1em;
-        font-size: 1.2em;
-        text-align: center;
+		margin: 0;
+		padding: 1em 1em;
+		font-size: 1.2em;
+		text-align: center;
 		font-size: 1.3em;
 	}
 	a {
@@ -41,7 +43,7 @@
 	form {
 		margin: 0 auto;
 		max-width: 50em;
-		padding:  1em 2em;
+		padding: 1em 2em;
 		display: flex;
 		align-content: stretch;
 	}
@@ -59,61 +61,67 @@
 		margin: 0 0 0 1em;
 	}
 	#spinner {
-        display: block;
+		display: block;
 		margin: 3em auto 0;
-        height: 4em;
-        width: 4em;    
-        border: .4em transparent solid;
-        border-top: .4em solid var(--color-secondary);
-        border-radius: 50%;
-        -webkit-animation: spin2 1s infinite linear;
-                animation: spin2 1s infinite linear;
-    }
+		height: 4em;
+		width: 4em;
+		border: 0.4em transparent solid;
+		border-top: 0.4em solid var(--color-secondary);
+		border-radius: 50%;
+		-webkit-animation: spin2 1s infinite linear;
+		animation: spin2 1s infinite linear;
+	}
 
-    @-webkit-keyframes spin2 {
-        from {
-            -webkit-transform: rotate(0deg);
-                    transform: rotate(0deg);
-        }
-        to {
-            -webkit-transform: rotate(359deg);
-                    transform: rotate(359deg);
-        }
-    }
+	@-webkit-keyframes spin2 {
+		from {
+			-webkit-transform: rotate(0deg);
+			transform: rotate(0deg);
+		}
+		to {
+			-webkit-transform: rotate(359deg);
+			transform: rotate(359deg);
+		}
+	}
 
-    @keyframes spin2 {
-        from {
-            -webkit-transform: rotate(0deg);
-                    transform: rotate(0deg);
-            -webkit-transform: rotate(0deg);
-                    transform: rotate(0deg);
-        }
-        to {
-            -webkit-transform: rotate(359deg);
-                    transform: rotate(359deg);
-            -webkit-transform: rotate(359deg);
-                    transform: rotate(359deg);
-        }
-    }
+	@keyframes spin2 {
+		from {
+			-webkit-transform: rotate(0deg);
+			transform: rotate(0deg);
+			-webkit-transform: rotate(0deg);
+			transform: rotate(0deg);
+		}
+		to {
+			-webkit-transform: rotate(359deg);
+			transform: rotate(359deg);
+			-webkit-transform: rotate(359deg);
+			transform: rotate(359deg);
+		}
+	}
 </style>
 
-<Banner {text}/>
+<Banner {text} />
 
 {#if $user.loading}
-	<div id="spinner"></div>
-{:else if $user.invalidToken} 
-	<p>You need a valid token in order to vote. Please check your messages from <a href="https://t.me/ToMemeHub_Bot">@ToMemeHub_Bot</a></p>
+	<div id="spinner" />
+{:else if $user.invalidToken}
+	<p>
+		You need a valid token in order to vote. Please check your messages from
+		<a href="https://t.me/ToMemeHub_Bot">@ToMemeHub_Bot</a>
+	</p>
 	<p>You can also enter your token here:</p>
 	<form action="/" method="GET">
-		<input type="text" name="token"/>
-		<input type="submit" value="Use"/>
+		<input type="text" name="token" />
+		<input type="submit" value="Use" />
 	</form>
 {:else if $user.noConnection}
-	<p>We are currently experiencing technical difficulties. Plase try again later.</p>
+	<p>
+		We are currently experiencing technical difficulties. Plase try again
+		later.
+	</p>
 {:else}
 	{#each categories as category}
-		<Category {category}/>
+		<Category {category} />
 	{/each}
-	<VoteCount/>
+	<VoteCount />
 {/if}
-<BottomSpacer/>
+<BottomSpacer />

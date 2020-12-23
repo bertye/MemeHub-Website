@@ -4,12 +4,12 @@ import { token } from './token.js';
 
 export const user = writable({ loading: true, name: "" });
 
-fetch('http://memehub.ddns.net:2355/user?token=' + token)
+fetch('__env.API_URL/user?token=' + token)
     .then(response => {
         if (!response.ok) {
             console.log("ERROR couod not get user.");
             console.log(response.statusText);
-            return { 
+            return {
                 name: "Invalid",
                 invalidToken: true
             };

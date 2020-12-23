@@ -4,3 +4,4 @@ public/bundle.*
 public/media
 public/nominees.json
 public/media.json
+.env

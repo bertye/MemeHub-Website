@@ -4,6 +4,11 @@ import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import rollup_start_dev from './rollup_start_dev';
+import replace from '@rollup/plugin-replace';
+import scss from 'rollup-plugin-scss'
+import { config } from 'dotenv';
+
+config();
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -17,13 +22,21 @@ export default {
 	},
 	plugins: [
 		svelte({
-			// enable run-time checks when not in production
-			dev: !production,
-			// we'll extract any component CSS out into
-			// a separate file — better for performance
-			css: css => {
-				css.write('public/bundle.css');
+			compilerOptions: {
+				// enable run-time checks when not in production
+				dev: !production,
+				// we'll extract any component CSS out into
+				// a separate file — better for performance
+				css: css => {
+					css.write('public/bundle.css');
+				},
 			}
+
+		}),
+
+		replace({
+			// stringify the object       
+			...Object.keys(process.env).reduce((res, key) => ({ ...res, [`__env.${key}`]: process.env[key] }), { PROD: production })
 		}),
 
 		// If you have external dependencies installed from
@@ -36,6 +49,9 @@ export default {
 			dedupe: importee => importee === 'svelte' || importee.startsWith('svelte/')
 		}),
 		commonjs(),
+
+
+		scss(), // will output compiled styles to output.css
 
 		// In dev mode, call `npm run start:dev` once
 		// the bundle has been generated
