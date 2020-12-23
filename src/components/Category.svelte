@@ -53,6 +53,7 @@
         text-align: center;
         height: 0;
         transition: height 0.5s ease;
+        scrollbar-width: none;
     }
     #gallery::-webkit-scrollbar {
         display: none;
